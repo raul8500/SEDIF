@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sedif.vistasestudiante.FXMLLoginController">
+   <children>
+      <ImageView fitHeight="576.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/INICIO.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="409.0" layoutY="383.0" mnemonicParsing="false" onAction="#clicBtnLogin" opacity="0.0" prefHeight="50.0" prefWidth="200.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <PasswordField fx:id="pfPassword" layoutX="401.0" layoutY="310.0" prefHeight="50.0" prefWidth="214.0" promptText="Contraseña">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </PasswordField>
+      <TextField fx:id="tfUser" layoutX="401.0" layoutY="238.0" prefHeight="50.0" prefWidth="214.0" promptText="Usuario">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lbErrorUser" layoutX="401.0" layoutY="288.0" prefHeight="17.0" prefWidth="214.0" textFill="RED" />
+      <Label fx:id="lbErrorPassword" layoutX="401.0" layoutY="360.0" prefHeight="17.0" prefWidth="214.0" textFill="RED" />
+      <Button layoutX="432.0" layoutY="453.0" mnemonicParsing="false" onAction="#clicBtnRecoverPass" opacity="0.0" prefHeight="25.0" prefWidth="158.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="46.0" fitWidth="119.0" layoutX="899.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/BTNSALIR.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="905.0" layoutY="536.0" mnemonicParsing="false" onAction="#clicBtnExit" opacity="0.0" prefHeight="25.0" prefWidth="97.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

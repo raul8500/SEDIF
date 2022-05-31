@@ -5,7 +5,7 @@
 /* Fecha modificación:	10-06-2021	*/
 /* Descripción:	 Carga la ventana FXMLChangePasswordController.fxml con los campos de change password
 /*******************************************************/
-package sedif.vistasestudiante;
+package sedif.vistas;
 
 import java.io.IOException;
 import java.net.URL;

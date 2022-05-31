@@ -1,4 +1,9 @@
-package sedif.vistasestudiante;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sedif.vistas;
 
 import java.io.IOException;
 import java.net.URL;
@@ -12,38 +17,29 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class FXMLMainController implements Initializable {
+public class FXMLMainSecretariesController implements Initializable {
 
     @FXML
     private Button btnLogout;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
     }    
 
     @FXML
+    private void clicBtnProcedures(ActionEvent event) {
+        changeWindow("");
+    }
+
+    @FXML
+    private void clicBtnQuestions(ActionEvent event) {
+        changeWindow("");
+    }
+
+    @FXML
     private void clicBtnLogout(ActionEvent event) {
         changeWindow("FXMLLogin.fxml");
-    }
-
-    @FXML
-    private void clicBtnHelp(ActionEvent event) {
-    }
-
-    @FXML
-    private void clicBtnSendWithout(ActionEvent event) {
-        changeWindow("FXMLSendDocWithout.fxml");
-    }
-
-    @FXML
-    private void clicBtnSendDocWith(ActionEvent event) {
-        changeWindow("FXMLSendDocWith.fxml");
-    }
-
-    @FXML
-    private void clicBtnNoInscription(ActionEvent event) {
-        changeWindow("FXMLNoInscription.fxml");
     }
     
     private void changeWindow(String window){

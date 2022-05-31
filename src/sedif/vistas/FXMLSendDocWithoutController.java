@@ -6,7 +6,7 @@
 /* Descripción:	 Carga la ventana FXMLSendDocWithout.fxml con los campos de enviar documentos sin cambios
 /*******************************************************/
 
-package sedif.vistasestudiante;
+package sedif.vistas;
 
 import java.io.BufferedReader;
 import java.io.File;

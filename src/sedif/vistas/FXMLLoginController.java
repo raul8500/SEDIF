@@ -5,7 +5,7 @@
 /* Fecha modificación:	10-06-2021	*/
 /* Descripción:	 Carga la ventana FXMLLogin.fxml con los campos de Login
 /*******************************************************/
-package sedif.vistasestudiante;
+package sedif.vistas;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,16 +56,17 @@ public class FXMLLoginController implements Initializable {
             lbErrorPassword.setText("Campo contraseña requerido");
             isTrue = false;
         }
-       
-        if(isTrue){
-           goMainWindow();
+        if(txtUsuario.contains("secretaria")){
+            goMainWindow("FXMLMainSecretaries.fxml");
+        }else if(isTrue) {
+            goMainWindow("FXMLMain.fxml");
         }
     }
     
-    private void goMainWindow(){
+    private void goMainWindow(String window){
         try {
             Stage stage = (Stage) tfUser.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("FXMLMain.fxml")));
+            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(window)));
             stage.setScene(scenePrincipal);
             stage.setTitle("SEDIF");
             stage.getIcons().add(new Image("img/LOGOUV.png"));

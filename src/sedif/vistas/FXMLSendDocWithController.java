@@ -1,12 +1,12 @@
 /******************************************************************/
-/* Archivo:     FXMLNoInscriptionController.java	 */
+/* Archivo:     FXMLSendDocWithController.java	 */
 /* Programador: Raul Arturo Peredo Estudillo  */
 /* Fecha:	19-05-2022	*/
 /* Fecha modificación:	10-06-2021	*/
-/* Descripción:	 Carga la ventana FXMLNoInscription.fxml con los campos de no inscripcion
+/* Descripción:	 Carga la ventana FXMLSendDocWith.fxml con los campos de change password
 /*******************************************************/
 
-package sedif.vistasestudiante;
+package sedif.vistas;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,33 +25,48 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 
-public class FXMLNoInscriptionController implements Initializable {
+public class FXMLSendDocWithController implements Initializable {
+    
 
     @FXML
-    private Button btnHelp;
-    String route;
+    private Button btnBack;
     @FXML
-    private Label lbLoadDoc;
-
+    private Label lbUpDoc;
+    @FXML
+    private Label lbDownDoc;
+    
+    String route1;
+    String route2;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    }    
-
+    }
+    
     @FXML
-    private void clicBtnLoadDoc(ActionEvent event) {
-        loadDocs(lbLoadDoc,route);
+    private void clicBtnSendProcedure(ActionEvent event) {
+        //Validacion del envio
+        showAlert("Envio de Documentos", "El envio fue...", Alert.AlertType.INFORMATION);
     }
 
+    @FXML
+    private void clicBtnLoadDocUp(ActionEvent event) {
+        loadDocs(lbUpDoc,route2);
+    }
+
+    @FXML
+    private void clicBtnLoadDocDown(ActionEvent event) {
+        loadDocs(lbDownDoc,route1);
+    }
+    
     @FXML
     private void clicBtnBack(ActionEvent event) {
         changeWindow("FXMLMain.fxml");
     }
 
     @FXML
-    private void clicBtnSendProcedure(ActionEvent event) {
-        //Validacion del envio
-        showAlert("Envio de Documento", "El envio fue...", Alert.AlertType.INFORMATION);
+    private void clicBtnHelp(ActionEvent event) {
+        changeWindow("");
     }
 
     @FXML
@@ -60,18 +75,18 @@ public class FXMLNoInscriptionController implements Initializable {
     }
 
     @FXML
-    private void clicBtnSendDocWith(ActionEvent event) {
-        changeWindow("FXMLSendDocWith.fxml");
+    private void clicBtnSendDocIns(ActionEvent event) {
+        changeWindow("FXMLNoInscription.fxml");
     }
 
     @FXML
-    private void clicBtnHelp(ActionEvent event) {
-        changeWindow("");
+    private void clicBtnDownload(ActionEvent event) {
     }
+
     
     private void changeWindow(String window){
         try {
-            Stage stage = (Stage) btnHelp.getScene().getWindow();
+            Stage stage = (Stage) btnBack.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(window)));
             stage.setScene(scenePrincipal);
             stage.setTitle("SEDIF");
@@ -83,7 +98,7 @@ public class FXMLNoInscriptionController implements Initializable {
     }
     
     private void loadDocs(Label label, String route){
-        Stage stage = (Stage) btnHelp.getScene().getWindow();
+        Stage stage = (Stage) btnBack.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.getExtensionFilters().addAll(
