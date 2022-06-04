@@ -79,7 +79,7 @@ public class FXMLLoginController implements Initializable {
     @FXML
     private void clicBtnRecoverPass(ActionEvent event) {
         showAlert("Recuperar Contraseña","Para recuperar tu contraseña es necesario que te pongas en "
-                + "contacto con tu secretaria academica correspondiente.",Alert.AlertType.INFORMATION);
+                + "contacto con tu secretaria académica correspondiente.",Alert.AlertType.INFORMATION);
     }
     
     private void showAlert(String title, String message, Alert.AlertType type){

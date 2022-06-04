@@ -1,35 +1,54 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package sedif.vistas;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class FXMLMainSecretariesController implements Initializable {
+/**
+ * FXML Controller class
+ *
+ * @author peres
+ */
+public class FXMLSecretariesProceduresController implements Initializable {
 
+    @FXML
+    private TableColumn<?, ?> clNameStudent;
+    @FXML
+    private TableColumn<?, ?> clProcedureType;
+    @FXML
+    private TableColumn<?, ?> clMatricula;
+    @FXML
+    private ComboBox<String> cbFilter;
+    
+    private ObservableList<String> itemsList = FXCollections.observableArrayList("En revisión","Concluído");
     @FXML
     private Button btnLogout;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        cbFilter.setItems(itemsList);
     }    
 
     @FXML
-    private void clicBtnProcedures(ActionEvent event) {
-        changeWindow("FXMLSecretariesProcedures.fxml");
-    }
-
-    @FXML
-    private void clicBtnQuestions(ActionEvent event) {
-        changeWindow("");
+    private void clicBtnFilter(ActionEvent event) {
     }
 
     @FXML
@@ -49,4 +68,5 @@ public class FXMLMainSecretariesController implements Initializable {
             System.err.println(ex.getMessage());
         }
     }
+    
 }
