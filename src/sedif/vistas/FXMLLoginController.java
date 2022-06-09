@@ -56,10 +56,8 @@ public class FXMLLoginController implements Initializable {
             lbErrorPassword.setText("Campo contraseña requerido");
             isTrue = false;
         }
-        if(txtUsuario.contains("secretaria")){
-            goMainWindow("FXMLMainSecretaries.fxml");
-        }else if(isTrue) {
-            goMainWindow("FXMLMain.fxml");
+        if(isTrue) {
+            verificateUserType();
         }
     }
     
@@ -95,4 +93,32 @@ public class FXMLLoginController implements Initializable {
         Stage stage = (Stage) tfUser.getScene().getWindow();
         stage.close();
     }
+    
+    public void verificateStatusStudent(){
+        //se hace la verificacion para saber que trmite esta haciendo el estudiante
+        //regresa un numero segun el tramite
+        
+        int tramite = 1;
+        
+        if (tramite == 0){
+            goMainWindow("FXMLMain.fxml");
+        }else if (tramite == 1){
+            goMainWindow("FXMLMainStatus.fxml");
+        } 
+    }
+    
+    public void verificateUserType(){
+        //hace la verificacion para saber si es estudiante o secretaria;
+        
+        //0 estudiante
+        //1 secretaria
+        int userType = 0;
+        
+        if (userType == 0){
+            verificateStatusStudent();
+        }else{
+            goMainWindow("FXMLMainSecretaries.fxml");
+        }
+    }
+    
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sedif.vistas.FXMLStatusProcedureController">
+   <children>
+      <ImageView fitHeight="576.0" fitWidth="1024.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/Main3.1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnLogout" layoutX="904.0" layoutY="521.0" mnemonicParsing="false" onAction="#clicBtnLogout" opacity="0.0" prefHeight="25.0" prefWidth="87.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="20.0" layoutY="165.0" mnemonicParsing="false" onAction="#clicBtnStatus" opacity="0.0" prefHeight="54.0" prefWidth="165.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="clicBtnModify" layoutX="266.0" layoutY="390.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="95.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="269.0" layoutY="169.0" text="Estado del Tramite:">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgDoc" fitHeight="115.0" fitWidth="111.0" layoutX="269.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/Mod.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lbMod" layoutX="279.0" layoutY="229.0" text="Modificar ">
+         <font>
+            <Font name="Arial Bold" size="19.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgSelect" fitHeight="115.0" fitWidth="111.0" layoutX="268.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/SELECCIONAR.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnSelect" layoutX="272.0" layoutY="392.0" mnemonicParsing="false" onAction="#clicBtnSelect" opacity="0.0" prefHeight="30.0" prefWidth="104.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="lbStatus" layoutX="458.0" layoutY="169.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

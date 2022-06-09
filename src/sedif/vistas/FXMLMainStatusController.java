@@ -10,44 +10,32 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class FXMLMainController implements Initializable {
+public class FXMLMainStatusController implements Initializable {
 
     @FXML
     private Button btnLogout;
-    
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
+
+    @FXML
+    private void clicBtnStatus(ActionEvent event) {
+        /// optiene el status antes para realizar la carga de componetes de venatan
         
-    }    
+        chageWindow("FXMLStatusProcedure.fxml");
+    }
 
     @FXML
     private void clicBtnLogout(ActionEvent event) {
-        changeWindow("FXMLLogin.fxml");
-    }
-
-    @FXML
-    private void clicBtnHelp(ActionEvent event) {
-    }
-
-    @FXML
-    private void clicBtnSendWithout(ActionEvent event) {
-        changeWindow("FXMLSendDocWithout.fxml");
-    }
-
-    @FXML
-    private void clicBtnSendDocWith(ActionEvent event) {
-        changeWindow("FXMLSendDocWith.fxml");
-    }
-
-    @FXML
-    private void clicBtnNoInscription(ActionEvent event) {
-        changeWindow("FXMLNoInscription.fxml");
+        chageWindow("FXMLLogin.fxml");
     }
     
-    private void changeWindow(String window){
+    private void chageWindow(String window){
         try {
             Stage stage = (Stage) btnLogout.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(window)));
@@ -59,4 +47,5 @@ public class FXMLMainController implements Initializable {
             System.err.println(ex.getMessage());
         }
     }
+    
 }
