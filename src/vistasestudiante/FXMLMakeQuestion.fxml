@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistasestudiante.FXMLMakeQuestionController">
+   <children>
+      <Button layoutX="845.0" layoutY="319.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="76.0" text="Enviar" />
+      <TextArea layoutX="168.0" layoutY="135.0" prefHeight="169.0" prefWidth="762.0" />
+      <Label layoutX="174.0" layoutY="396.0" prefHeight="117.0" prefWidth="761.0" />
+      <Label layoutX="175.0" layoutY="74.0" text="¿Necesitas ayuda?">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="758.0" layoutY="325.0" mnemonicParsing="false" onAction="#clicBtnAttach" text="Adjuntar" />
+      <Label layoutX="178.0" layoutY="361.0" text="Respuestas">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbDocName" layoutX="607.0" layoutY="323.0" prefHeight="27.0" prefWidth="113.0" />
+   </children>
+</AnchorPane>

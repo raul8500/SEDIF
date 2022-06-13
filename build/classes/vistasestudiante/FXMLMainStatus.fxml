@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistasestudiante.FXMLMainStatusController">
+   <children>
+      <ImageView fitHeight="576.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Main3.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnLogout" layoutX="891.0" layoutY="513.0" mnemonicParsing="false" onAction="#clicBtnLogout" prefHeight="38.0" prefWidth="109.0" style="-fx-background-color: dimgray;" text="Salir" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="20.0" layoutY="162.0" mnemonicParsing="false" onAction="#clicBtnStatus" opacity="0.0" prefHeight="54.0" prefWidth="165.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
