@@ -21,10 +21,23 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import Servicio.ServicioUsuario;
+import Servicio.ServiceLogin;
+import Servicio.ServiceProcedure;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONException;
+import org.json.JSONObject;
+import pojo.Procedure;
+import pojo.Secretarie;
+import pojo.User;
+import pojo.Student;
 
 public class FXMLLoginController implements Initializable {
-
+    public static Student newStudent;
+    public static Secretarie newSecretarie;
+    public static Procedure procedure;
+    
+    
     @FXML
     private PasswordField pfPassword;
     @FXML
@@ -95,16 +108,20 @@ public class FXMLLoginController implements Initializable {
         stage.close();
     }
     
-    public void verificateStatusStudent(){
-        //se hace la verificacion para saber que trmite esta haciendo el estudiante
-        //regresa un numero segun el tramite
+    public void verificateStatusStudent(Student newStudent) throws JSONException{
+        ServiceProcedure serviceProcedure = new ServiceProcedure();
+        procedure = serviceProcedure.getStatusProcedure(newStudent.getToken());
         
-        int tramite = 0;
-        if (tramite == 0){
-            goMainWindow("/vistasestudiante/FXMLMainEstudiante.fxml");
-        }else if (tramite == 1){
-            goMainWindow("/vistasestudiante/FXMLMainStatus.fxml");
-        } 
+        if (procedure.isError()){
+            showAlert("Error", "Error en el servidor", Alert.AlertType.ERROR);
+        }else{
+            
+            if (procedure.getStatus()==0){
+                goMainWindow("/vistasestudiante/FXMLMainEstudiante.fxml");
+            }else if (procedure.getStatus()==1){
+                goMainWindow("/vistasestudiante/FXMLMainStatus.fxml");
+            } 
+        }
     }
     
     public void verificateUserType(String usuario, String password){
@@ -112,12 +129,35 @@ public class FXMLLoginController implements Initializable {
         
         //0 estudiante
         //1 secretaria
-        ServicioUsuario sc = new ServicioUsuario();
-        int userType= sc.Autenticar(usuario,password);
-        if (userType == 0){
-            verificateStatusStudent();
-        }else{
-            goMainWindow("/vistassecretarias/FXMLMainSecretarias.fxml"); 
-        }
+        try{
+            ServiceLogin sc = new ServiceLogin();
+            User newUser = sc.Autenticar(usuario,password);
+
+            if (newUser.isIsLogued()){
+                JSONObject userInfo = newUser.getUserInfo();
+                int userType = userInfo.getInt("rol");
+
+                if (userType == 0){
+                    String token = newUser.getToken();
+                    String name = userInfo.getString("nombres");
+                    String lastName = userInfo.getString("apellidos");
+                    String carrer = userInfo.getString("Carrera");
+                    String nameRol = userInfo.getString("nombreRol");
+                    newStudent = new Student(name,lastName,carrer,userType,nameRol,token);
+                    verificateStatusStudent(newStudent);
+                }else{
+                    String token = newUser.getToken();
+                    String name = userInfo.getString("nombres");
+                    String lastName = userInfo.getString("apellidos");
+                    String nameRol = userInfo.getString("nombreRol");
+                    newSecretarie = new Secretarie(userType,name,lastName,nameRol,token);
+                    goMainWindow ("/vistassecretarias/FXMLMainSecretarias.fxml");
+                }
+            }else{
+                showAlert("Credenciales incorrectas", "No existe un usuario con las credenciales proporcionadas", Alert.AlertType.ERROR);
+            }
+        }catch (JSONException ex) {
+            Logger.getLogger(ServiceLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }    
     }
 }

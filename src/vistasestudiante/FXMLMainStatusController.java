@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import pojo.Procedure;
+import sedif.FXMLLoginController;
 
 public class FXMLMainStatusController implements Initializable {
 
@@ -20,7 +22,8 @@ public class FXMLMainStatusController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Procedure prc = FXMLLoginController.procedure;
+        System.out.println(prc.toString());
     }
 
     @FXML

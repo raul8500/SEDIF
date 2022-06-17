@@ -12,10 +12,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
+import pojo.User;
 
-public class ServicioUsuario {
+public class ServiceLogin {
     
-    public int Autenticar(String correo, String contrasenia){
+    public User Autenticar(String correo, String contrasenia){
         try{
             URL url = new URL("http://127.0.0.1:7070/api/auth");
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
@@ -35,30 +36,26 @@ public class ServicioUsuario {
                 for(int c; (c = entrada.read()) >= 0;){
                     stringBuilder.append((char)c);
                 }
-                System.out.println("Arriba los knick");
-                String respuesta = stringBuilder.toString();
-                System.out.println(respuesta);
-                
+                String respuesta = stringBuilder.toString();                
                 JSONObject usuarioObtenido = new JSONObject(respuesta);
                 boolean isLogged = usuarioObtenido.getBoolean("ok") ;
                 if (isLogged){
                     String token = usuarioObtenido.getString("token");
                     JSONObject userInfo = usuarioObtenido.getJSONObject("userInfo");
                     int numRol = userInfo.getInt("rol");
-                    return numRol;
+                    User newUser = new User(token,userInfo,true);
+                    return newUser;
                 }else{
-                    return -1;
+                    User newUser = new User(null,null,false);
+                    return newUser;
                 }
-                //{"ok":true,"token":"312ewadaw",
-                //"userInfo":{"rol":0,"nombres":"Yuriana","apellidos":"Lopez Vazquez",
-                //"Carrera":"Ingeniería de Software","nombreRol":"Estudiante"}}
             }
-            
         }catch (MalformedURLException ex) {
-            Logger.getLogger(ServicioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServiceLogin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | JSONException ex) {
-            Logger.getLogger(ServicioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServiceLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return 3;
+        User newUser = new User(null,null,false);
+        return newUser;
     }
 }

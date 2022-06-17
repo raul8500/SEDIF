@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import pojo.Secretarie;
+import sedif.FXMLLoginController;
 
 
 public class FXMLMainSecretariasController implements Initializable {
@@ -20,7 +22,8 @@ public class FXMLMainSecretariasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        Secretarie newSecretarie = FXMLLoginController.newSecretarie;
+        System.out.println(newSecretarie.toString());
     }    
 
     @FXML

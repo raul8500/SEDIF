@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import pojo.Student;
+import sedif.FXMLLoginController;
 
 public class FXMLMainEstudianteController implements Initializable {
 
@@ -22,7 +24,6 @@ public class FXMLMainEstudianteController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
     }    
 
     @FXML
