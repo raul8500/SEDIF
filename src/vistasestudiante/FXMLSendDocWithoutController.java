@@ -1,8 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/******************************************************************/
+/* Archivo:     FXMLSendDocWithoutController.java	 */
+/* Programador: Raul Arturo Peredo Estudillo  */
+/* Fecha:	19-05-2022	*/
+/* Fecha modificación:	17-06-2022	*/
+/* Descripción:	 Carga la ventana FXMLSendDocWithout.fxml para enviar documento sin casmbios
+/*******************************************************/
 package vistasestudiante;
 
 import java.io.File;
@@ -21,11 +23,6 @@ import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author peres
- */
 public class FXMLSendDocWithoutController implements Initializable {
 
     @FXML
@@ -88,8 +85,8 @@ public class FXMLSendDocWithoutController implements Initializable {
     private void changeWindow(String window){
         try {
             Stage stage = (Stage) btnBack.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(window)));
-            stage.setScene(scenePrincipal);
+            Scene mainScene = new Scene(FXMLLoader.load(getClass().getResource(window)));
+            stage.setScene(mainScene);
             stage.setTitle("SEDIF");
             stage.getIcons().add(new Image("img/LOGOUV.png"));
             stage.show();

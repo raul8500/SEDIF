@@ -1,3 +1,11 @@
+/******************************************************************/
+/* Archivo:     FXMLStatusProcedureController.java	 */
+/* Programador: Raul Arturo Peredo Estudillo  */
+/* Fecha:	19-05-2022	*/
+/* Fecha modificación:	17-06-2022	*/
+/* Descripción:	 Carga la ventana FXMLStatusProcedure.fxml con el estado del tramite del estudiante
+/*******************************************************/
+
 package vistasestudiante;
 
 import java.net.URL;

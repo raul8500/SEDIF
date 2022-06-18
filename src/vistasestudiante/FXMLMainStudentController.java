@@ -1,3 +1,12 @@
+/******************************************************************/
+/* Archivo:     FXMLMainStudentController.java	 */
+/* Programador: Raul Arturo Peredo Estudillo  */
+/* Fecha:	19-05-2022	*/
+/* Fecha modificación:	17-06-2022	*/
+/* Descripción:	 Controlador de la ventana FXMLMainStudent.fxml
+*/
+/*******************************************************/
+
 package vistasestudiante;
 
 import java.io.IOException;
@@ -15,20 +24,18 @@ import javafx.stage.Stage;
 import pojo.Student;
 import sedif.FXMLLoginController;
 
-public class FXMLMainEstudianteController implements Initializable {
+public class FXMLMainStudentController implements Initializable {
 
     @FXML
-    private Button btnLogout;
-    @FXML
-    private ImageView imgMain;
+    private Button btnExit;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
 
     @FXML
-    private void clicBtnLogout(ActionEvent event) {
-        Stage stage = (Stage) btnLogout.getScene().getWindow();
+    private void clicBtnExit(ActionEvent event) {
+        Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
     }
 
@@ -54,9 +61,9 @@ public class FXMLMainEstudianteController implements Initializable {
     
     private void changeWindow(String window){
         try {
-            Stage stage = (Stage) btnLogout.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(window)));
-            stage.setScene(scenePrincipal);
+            Stage stage = (Stage) btnExit.getScene().getWindow();
+            Scene mainScene = new Scene(FXMLLoader.load(getClass().getResource(window)));
+            stage.setScene(mainScene);
             stage.setTitle("SEDIF");
             stage.getIcons().add(new Image("img/LOGOUV.png"));
             stage.show();

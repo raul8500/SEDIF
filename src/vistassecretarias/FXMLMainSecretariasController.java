@@ -1,3 +1,12 @@
+/******************************************************************/
+/* Archivo:     FXMLMainSecretariesController.java	 */
+/* Programador: Raul Arturo Peredo Estudillo  */
+/* Fecha:	19-05-2022	*/
+/* Fecha modificación:	17-06-2022	*/
+/* Descripción:	 Carga la ventana FXMLMainSecretaries.fxml ventana principal de las secretarias
+*/
+/*******************************************************/
+
 package vistassecretarias;
 
 import java.io.IOException;
@@ -45,8 +54,8 @@ public class FXMLMainSecretariasController implements Initializable {
     private void changeWindow(String window){
         try {
             Stage stage = (Stage) btnClose.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(window)));
-            stage.setScene(scenePrincipal);
+            Scene mainScene = new Scene(FXMLLoader.load(getClass().getResource(window)));
+            stage.setScene(mainScene);
             stage.setTitle("SEDIF");
             stage.getIcons().add(new Image("img/LOGOUV.png"));
             stage.show();

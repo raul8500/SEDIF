@@ -1,3 +1,12 @@
+/******************************************************************/
+/* Archivo:     FXMLMainStatusController.java	 */
+/* Programador: Raul Arturo Peredo Estudillo  */
+/* Fecha:	19-05-2022	*/
+/* Fecha modificación:	17-06-2022	*/
+/* Descripción:	 Controlador de la ventana FXMLMainStatus.fxml
+*/
+/*******************************************************/
+
 package vistasestudiante;
 
 import java.io.IOException;
@@ -17,25 +26,23 @@ import sedif.FXMLLoginController;
 public class FXMLMainStatusController implements Initializable {
 
     @FXML
-    private Button btnLogout;
+    private Button btnExit;
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Procedure prc = FXMLLoginController.procedure;
-        System.out.println(prc.toString());
+        //System.out.println(prc.toString());
     }
 
     @FXML
     private void clicBtnStatus(ActionEvent event) {
-        /// optiene el status antes para realizar la carga de componetes de venatan
-        
         chageWindow("FXMLStatusProcedure.fxml");
     }
 
     @FXML
-    private void clicBtnLogout(ActionEvent event) {
-        Stage stage = (Stage) btnLogout.getScene().getWindow();
+    private void clicBtnExit(ActionEvent event) {
+        Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
     }
     @FXML
@@ -45,9 +52,9 @@ public class FXMLMainStatusController implements Initializable {
     
     private void chageWindow(String window){
         try {
-            Stage stage = (Stage) btnLogout.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(window)));
-            stage.setScene(scenePrincipal);
+            Stage stage = (Stage) btnExit.getScene().getWindow();
+            Scene mainScene = new Scene(FXMLLoader.load(getClass().getResource(window)));
+            stage.setScene(mainScene);
             stage.setTitle("SEDIF");
             stage.getIcons().add(new Image("img/LOGOUV.png"));
             stage.show();

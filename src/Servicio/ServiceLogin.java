@@ -1,3 +1,12 @@
+/******************************************************************/
+/* Archivo:     ServiceLogin.java	 */
+/* Programador: Raul Arturo Peredo Estudillo  */
+/* Fecha:	13-06-2022	*/
+/* Fecha modificación:	19-06-2022	*/
+/* Descripción:	 Recibe los datos (usuario) de la API
+*/
+/*******************************************************/
+
 package Servicio;
 
 import java.io.BufferedReader;
@@ -16,32 +25,33 @@ import pojo.User;
 
 public class ServiceLogin {
     
-    public User Autenticar(String correo, String contrasenia){
+    public User Authenticate(String email, String password){
         try{
             URL url = new URL("http://127.0.0.1:7070/api/auth");
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
             conexion.setRequestMethod("POST");
-            String datos = "{\"email\": \"" + correo +"\", \"password\": \""+ contrasenia + "\"}" ;
-            System.out.println(datos);
+            String data = "{\"email\": \"" + email +"\", \"password\": \""+ password + "\"}" ;
+            //System.out.println(data);
             conexion.setRequestProperty("Content-Type", "application/json");
             conexion.setDoOutput(true);
             OutputStream output = conexion.getOutputStream();
-            output.write(datos.getBytes());
+            output.write(data.getBytes());
             output.flush();
             output.close();
             
             if(conexion.getResponseCode() == 200){
-                Reader entrada = new BufferedReader(new InputStreamReader(conexion.getInputStream(), "UTF-8"));
+                Reader imput = new BufferedReader(new InputStreamReader(conexion.getInputStream(), "UTF-8"));
                 StringBuilder stringBuilder = new StringBuilder();
-                for(int c; (c = entrada.read()) >= 0;){
+                for(int c; (c = imput.read()) >= 0;){
                     stringBuilder.append((char)c);
                 }
-                String respuesta = stringBuilder.toString();                
-                JSONObject usuarioObtenido = new JSONObject(respuesta);
-                boolean isLogged = usuarioObtenido.getBoolean("ok") ;
+                
+                String response = stringBuilder.toString();                
+                JSONObject obtainedUser = new JSONObject(response);
+                boolean isLogged = obtainedUser.getBoolean("ok") ;
                 if (isLogged){
-                    String token = usuarioObtenido.getString("token");
-                    JSONObject userInfo = usuarioObtenido.getJSONObject("userInfo");
+                    String token = obtainedUser.getString("token");
+                    JSONObject userInfo = obtainedUser.getJSONObject("userInfo");
                     int numRol = userInfo.getInt("rol");
                     User newUser = new User(token,userInfo,true);
                     return newUser;

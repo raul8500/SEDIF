@@ -2,8 +2,10 @@
 /* Archivo:     FXMLLoginController.java	 */
 /* Programador: Raul Arturo Peredo Estudillo  */
 /* Fecha:	19-05-2022	*/
-/* Fecha modificación:	10-06-2021	*/
-/* Descripción:	 Carga la ventana FXMLLogin.fxml con los campos de Login
+/* Fecha modificación:	17-06-2022	*/
+/* Descripción:	 Carga la ventana FXMLLogin.fxml con los campos de Login y realiza las verificaciones
+/*               para dejar entrar a un usuario al sistema.
+*/
 /*******************************************************/
 package sedif;
 
@@ -33,11 +35,6 @@ import pojo.User;
 import pojo.Student;
 
 public class FXMLLoginController implements Initializable {
-    public static Student newStudent;
-    public static Secretarie newSecretarie;
-    public static Procedure procedure;
-    
-    
     @FXML
     private PasswordField pfPassword;
     @FXML
@@ -47,9 +44,12 @@ public class FXMLLoginController implements Initializable {
     @FXML
     private Label lbErrorPassword;
     
+    public static Student newStudent;
+    public static Secretarie newSecretarie;
+    public static Procedure procedure;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
 
     @FXML
@@ -57,29 +57,28 @@ public class FXMLLoginController implements Initializable {
         lbErrorUser.setText("");
         lbErrorPassword.setText("");
        
-        String txtUsuario = tfUser.getText();
+        String txtUser = tfUser.getText();
         String txtPassword = pfPassword.getText();
         boolean isTrue = true;
        
-        if(txtUsuario.isEmpty()){
+        if(txtUser.isEmpty()){
             lbErrorUser.setText("Campo usuario requerido");
             isTrue = false;
         }
-       
         if(txtPassword.isEmpty()){
             lbErrorPassword.setText("Campo contraseña requerido");
             isTrue = false;
         }
         if(isTrue) {
-            verificateUserType(txtUsuario,txtPassword);
+            verificateUserType(txtUser,txtPassword);
         }
     }
     
-    private void goMainWindow(String window){
+    private void changeWindow(String window){
         try {
             Stage stage = (Stage) tfUser.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(window)));
-            stage.setScene(scenePrincipal);
+            Scene mainScene = new Scene(FXMLLoader.load(getClass().getResource(window)));
+            stage.setScene(mainScene);
             stage.setTitle("SEDIF");
             stage.getIcons().add(new Image("img/LOGOUV.png"));
             stage.show();
@@ -115,28 +114,26 @@ public class FXMLLoginController implements Initializable {
         if (procedure.isError()){
             showAlert("Error", "Error en el servidor", Alert.AlertType.ERROR);
         }else{
-            
             if (procedure.getStatus()==0){
-                goMainWindow("/vistasestudiante/FXMLMainEstudiante.fxml");
+                changeWindow("/vistasestudiante/FXMLMainEstudiante.fxml");
             }else if (procedure.getStatus()==1){
-                goMainWindow("/vistasestudiante/FXMLMainStatus.fxml");
+                changeWindow("/vistasestudiante/FXMLMainStatus.fxml");
             } 
         }
     }
     
-    public void verificateUserType(String usuario, String password){
-        //hace la verificacion para saber si es estudiante o secretaria;
-        
-        //0 estudiante
-        //1 secretaria
+    public void verificateUserType(String user, String password){
+        //Verificacion para saber si las credenciales ingresadas son
+        //de un estudiante o secretaria;
+        //userType = 0 = estudiante
+        //userType = 1 = secretaria
         try{
             ServiceLogin sc = new ServiceLogin();
-            User newUser = sc.Autenticar(usuario,password);
+            User newUser = sc.Authenticate(user,password);
 
             if (newUser.isIsLogued()){
                 JSONObject userInfo = newUser.getUserInfo();
                 int userType = userInfo.getInt("rol");
-
                 if (userType == 0){
                     String token = newUser.getToken();
                     String name = userInfo.getString("nombres");
@@ -151,7 +148,7 @@ public class FXMLLoginController implements Initializable {
                     String lastName = userInfo.getString("apellidos");
                     String nameRol = userInfo.getString("nombreRol");
                     newSecretarie = new Secretarie(userType,name,lastName,nameRol,token);
-                    goMainWindow ("/vistassecretarias/FXMLMainSecretarias.fxml");
+                    changeWindow ("/vistassecretarias/FXMLMainSecretarias.fxml");
                 }
             }else{
                 showAlert("Credenciales incorrectas", "No existe un usuario con las credenciales proporcionadas", Alert.AlertType.ERROR);

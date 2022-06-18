@@ -1,3 +1,11 @@
+/******************************************************************/
+/* Archivo:     Student.java	 */
+/* Programador: Raul Arturo Peredo Estudillo  */
+/* Fecha:	19-05-2022	*/
+/* Fecha modificación:	17-06-2022	*/
+/* Descripción:	 Clase para la creacion de objetos Estudiante
+*/
+/*******************************************************/
 
 package pojo;
 
@@ -9,10 +17,6 @@ public class Student {
     private String nameRol;
     private String token;
 
-    public Student() {
-        
-    }
-
     public Student(String name, String lastName, String carrer, int rol, String nameRol, String token) {
         this.name = name;
         this.lastName = lastName;
@@ -20,6 +24,9 @@ public class Student {
         this.rol = rol;
         this.nameRol = nameRol;
         this.token = token;
+    }
+    
+    public Student() { 
     }
 
     public String getName() {

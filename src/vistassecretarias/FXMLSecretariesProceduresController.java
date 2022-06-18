@@ -1,8 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/******************************************************************/
+/* Archivo:     FXMLSecretariesProceduresController.java	 */
+/* Programador: Raul Arturo Peredo Estudillo  */
+/* Fecha:	19-05-2022	*/
+/* Fecha modificación:	17-06-2022	*/
+/* Descripción:	 Carga la ventana FXMLSecretariesProcedures.fxml con los tramites que tiene que validar
+/*******************************************************/
+
+
 package vistassecretarias;
 
 import java.io.IOException;
@@ -19,11 +23,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author peres
- */
 public class FXMLSecretariesProceduresController implements Initializable {
 
     @FXML
@@ -37,9 +36,6 @@ public class FXMLSecretariesProceduresController implements Initializable {
     @FXML
     private ComboBox<?> cbFilter;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -56,7 +52,7 @@ public class FXMLSecretariesProceduresController implements Initializable {
         
     }
     
-    private void goMainWindow(String window){
+    private void changeWindow(String window){
         try {
             Stage stage = (Stage) btnLogout.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(window)));

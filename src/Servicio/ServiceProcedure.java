@@ -1,3 +1,11 @@
+/******************************************************************/
+/* Archivo:     ServiceProcedure.java	 */
+/* Programador: Raul Arturo Peredo Estudillo  */
+/* Fecha:	13-06-2022	*/
+/* Fecha modificación:	19-06-2022	*/
+/* Descripción:	 Recibe los datos (tramite) de la API
+*/
+/*******************************************************/
 
 package Servicio;
 
@@ -18,37 +26,35 @@ public class ServiceProcedure {
     public Procedure getStatusProcedure(String token) throws JSONException{
         try{
             URL url = new URL("http://127.0.0.1:7070/api/tramite");
-            HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
-            conexion.setRequestMethod("GET");
-            conexion.setRequestProperty("x-token", token);
-            
-            Reader entrada = new BufferedReader(new InputStreamReader(conexion.getInputStream(), "UTF-8"));
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("x-token", token);
+            Reader imput = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
             StringBuilder stringBuilder = new StringBuilder();
             
-            for(int c; (c = entrada.read()) >= 0;){
+            for(int c; (c = imput.read()) >= 0;){
                 stringBuilder.append((char)c);
             }
             
-            String respuesta = stringBuilder.toString();                
-            JSONObject tramiteObtenido = new JSONObject(respuesta);
-            boolean successRequest = tramiteObtenido.getBoolean("ok");
+            String response = stringBuilder.toString();                
+            JSONObject obtainedProcedure = new JSONObject(response);
+            boolean successRequest = obtainedProcedure.getBoolean("ok");
             
             if (successRequest){
-                int status = tramiteObtenido.getInt("estadoEval");
+                int status = obtainedProcedure.getInt("estadoEval");
                 if (status != 0){
-                    String periodo = tramiteObtenido.getString("periodo");
-                    String nombre = tramiteObtenido.getString("nombre");
-                    int mes = tramiteObtenido.getInt("mes");
-                    int dia = tramiteObtenido.getInt("dia");
-                    int anio = tramiteObtenido.getInt("anio");
-                    Procedure newProcedure = new Procedure(status,periodo,nombre,dia,mes,anio);
+                    String peroid = obtainedProcedure.getString("periodo");
+                    String name = obtainedProcedure.getString("nombre");
+                    int month = obtainedProcedure.getInt("mes");
+                    int day = obtainedProcedure.getInt("dia");
+                    int year = obtainedProcedure.getInt("anio");
+                    Procedure newProcedure = new Procedure(status,peroid,name,day,month,year);
                     return newProcedure;
                 }else{
                     Procedure newProcedure = new Procedure(status);
                     return newProcedure;
                 }
             }else{
-                
                 Procedure newProcedure = new Procedure(true);
                 return newProcedure;
             }

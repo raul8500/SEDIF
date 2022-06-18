@@ -1,5 +1,14 @@
+/******************************************************************/
+/* Archivo:     Procedure.java	 */
+/* Programador: Raul Arturo Peredo Estudillo  */
+/* Fecha:	19-05-2022	*/
+/* Fecha modificación:	17-06-2022	*/
+/* Descripción:	 Clase para la creacion de objetos tramite
+*/
+/*******************************************************/
 
 package pojo;
+
 //status = 0 no iniciado
 //1 = en espera de evaluacion;
 //2 requiere cambios
@@ -7,12 +16,29 @@ package pojo;
 
 public class Procedure {
     private int status;
-    private String perior;
+    private String period;
     private String nameProcedure;
     private int day;
     private int month;
     private int year;
     private boolean error;
+    
+    public Procedure(int status, String period, String nameProcedure, int day, int month, int year) {
+        this.status = status;
+        this.period = period;
+        this.nameProcedure = nameProcedure;
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
+    
+    public Procedure(boolean error) {
+        this.error = error;
+    }
+
+    public Procedure(int status) {
+        this.status = status;
+    }
 
     public boolean isError() {
         return error;
@@ -21,24 +47,7 @@ public class Procedure {
     public void setError(boolean error) {
         this.error = error;
     }
-
-    public Procedure(boolean error) {
-        this.error = error;
-    }
-
-    public Procedure(int status, String perior, String nameProcedure, int day, int month, int year) {
-        this.status = status;
-        this.perior = perior;
-        this.nameProcedure = nameProcedure;
-        this.day = day;
-        this.month = month;
-        this.year = year;
-    }
-
-    public Procedure(int status) {
-        this.status = status;
-    }
-
+    
     public int getStatus() {
         return status;
     }
@@ -48,11 +57,11 @@ public class Procedure {
     }
 
     public String getPerior() {
-        return perior;
+        return period;
     }
 
     public void setPerior(String perior) {
-        this.perior = perior;
+        this.period = perior;
     }
 
     public String getNameProcedure() {
@@ -89,6 +98,6 @@ public class Procedure {
 
     @Override
     public String toString() {
-        return "Procedure{" + "status=" + status + ", perior=" + perior + ", nameProcedure=" + nameProcedure + ", day=" + day + ", month=" + month + ", year=" + year + '}';
+        return "Procedure{" + "status=" + status + ", perior=" + period + ", nameProcedure=" + nameProcedure + ", day=" + day + ", month=" + month + ", year=" + year + '}';
     }
 }

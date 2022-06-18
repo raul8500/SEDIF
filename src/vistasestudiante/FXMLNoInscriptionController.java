@@ -1,3 +1,11 @@
+/******************************************************************/
+/* Archivo:     FXMLNoInscriptionController.java	 */
+/* Programador: Raul Arturo Peredo Estudillo  */
+/* Fecha:	19-05-2022	*/
+/* Fecha modificación:	17-06-2022	*/
+/* Descripción:	 Carga la ventana FXMLNoInscription.fxml para poder realizar el tramite no inscripcion
+/*******************************************************/
+
 package vistasestudiante;
 
 import java.io.File;
@@ -63,8 +71,8 @@ public class FXMLNoInscriptionController implements Initializable {
     private void changeWindow(String window){
         try {
             Stage stage = (Stage) btnHelp.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(window)));
-            stage.setScene(scenePrincipal);
+            Scene mainScene = new Scene(FXMLLoader.load(getClass().getResource(window)));
+            stage.setScene(mainScene);
             stage.setTitle("SEDIF");
             stage.getIcons().add(new Image("img/LOGOUV.png"));
             stage.show();

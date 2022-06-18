@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -9,20 +10,30 @@
 
 <AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistasestudiante.FXMLMakeQuestionController">
    <children>
-      <Button layoutX="845.0" layoutY="319.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="76.0" text="Enviar" />
-      <TextArea layoutX="168.0" layoutY="135.0" prefHeight="169.0" prefWidth="762.0" />
-      <Label layoutX="174.0" layoutY="396.0" prefHeight="117.0" prefWidth="761.0" />
-      <Label layoutX="175.0" layoutY="74.0" text="¿Necesitas ayuda?">
+      <ImageView fitHeight="576.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Questions.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="930.0" layoutY="191.0" mnemonicParsing="false" onAction="#clicBtnSend" prefHeight="36.0" prefWidth="76.0" text="Enviar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <TextArea layoutX="67.0" layoutY="139.0" prefHeight="93.0" prefWidth="847.0" />
+      <Label layoutX="422.0" layoutY="50.0" text="¿Necesitas ayuda?">
          <font>
-            <Font size="22.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Button layoutX="758.0" layoutY="325.0" mnemonicParsing="false" onAction="#clicBtnAttach" text="Adjuntar" />
-      <Label layoutX="178.0" layoutY="361.0" text="Respuestas">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
+      <Button layoutX="929.0" layoutY="145.0" mnemonicParsing="false" onAction="#clicBtnAttach" prefHeight="36.0" prefWidth="77.0" text="Adjuntar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label fx:id="lbDocName" layoutX="607.0" layoutY="323.0" prefHeight="27.0" prefWidth="113.0" />
+      <ListView layoutX="64.0" layoutY="275.0" prefHeight="200.0" prefWidth="849.0" />
+      <Button layoutX="891.0" layoutY="510.0" mnemonicParsing="false" onAction="#clicBtnBack" prefHeight="38.0" prefWidth="109.0" style="-fx-background-color: gray;" text="Atras" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </AnchorPane>
