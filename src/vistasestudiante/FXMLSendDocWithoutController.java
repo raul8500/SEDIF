@@ -58,7 +58,7 @@ public class FXMLSendDocWithoutController implements Initializable {
 
     @FXML
     private void clicBtnBack(ActionEvent event) {
-        changeWindow("FXMLMainEstudiante.fxml");
+        changeWindow("FXMLMainStudent.fxml");
     }
 
     @FXML

@@ -31,8 +31,6 @@ public class FXMLMainSecretariasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Secretarie newSecretarie = FXMLLoginController.newSecretarie;
-        System.out.println(newSecretarie.toString());
     }    
 
     @FXML

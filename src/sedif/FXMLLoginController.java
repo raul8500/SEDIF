@@ -115,7 +115,7 @@ public class FXMLLoginController implements Initializable {
             showAlert("Error", "Error en el servidor", Alert.AlertType.ERROR);
         }else{
             if (procedure.getStatus()==0){
-                changeWindow("/vistasestudiante/FXMLMainEstudiante.fxml");
+                changeWindow("/vistasestudiante/FXMLMainStudent.fxml");
             }else if (procedure.getStatus()==1){
                 changeWindow("/vistasestudiante/FXMLMainStatus.fxml");
             } 

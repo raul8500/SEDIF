@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SEDIF.jar" size="2397079" download="eager" />
+    <jar href="SEDIF.jar" size="2409578" download="eager" />
     <jar href="lib\java-json.jar" size="84697" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="SEDIF" >

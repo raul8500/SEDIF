@@ -28,6 +28,8 @@ public class FXMLMainStudentController implements Initializable {
 
     @FXML
     private Button btnExit;
+    @FXML
+    private ImageView imgMain;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,5 +72,10 @@ public class FXMLMainStudentController implements Initializable {
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         }
+    }
+
+    @FXML
+    private void clicBtnFormats(ActionEvent event) {
+        changeWindow("FXMLDownloadFiles.fxml");
     }
 }

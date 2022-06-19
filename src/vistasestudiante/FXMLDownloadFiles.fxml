@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistasestudiante.FXMLDownloadFilesController">
+   <children>
+      <TableView fx:id="tbFormats" editable="true" layoutX="257.0" layoutY="91.0" prefHeight="408.0" prefWidth="314.0">
+        <columns>
+          <TableColumn fx:id="tbNameFormat" prefWidth="75.0" text="Nombre" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Button layoutX="632.0" layoutY="108.0" mnemonicParsing="false" onAction="#clicBtnDownload" prefHeight="59.0" prefWidth="156.0" text="Descargar" />
+      <Button layoutX="23.0" layoutY="108.0" mnemonicParsing="false" onAction="#clicBtnBack" prefHeight="59.0" prefWidth="156.0" text="Atras" />
+   </children>
+</AnchorPane>

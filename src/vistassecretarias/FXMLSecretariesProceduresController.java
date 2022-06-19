@@ -9,9 +9,16 @@
 
 package vistassecretarias;
 
+import Servicio.ServiceSecretarieProcedure;
+import static java.awt.PageAttributes.MediaType.C;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,9 +26,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import static javafx.scene.input.KeyCode.C;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import pojo.ProcedureInfo;
+import pojo.Secretarie;
+import sedif.FXMLLoginController;
+
 
 public class FXMLSecretariesProceduresController implements Initializable {
 
@@ -35,10 +52,32 @@ public class FXMLSecretariesProceduresController implements Initializable {
     private TableColumn<?, ?> clMatricula;
     @FXML
     private ComboBox<?> cbFilter;
+    
+    private ObservableList<ProcedureInfo> persons;
+    @FXML
+    private TableView<ProcedureInfo> tbProcedures;
+    
+    public static ProcedureInfo personInfo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        persons = FXCollections.observableArrayList();
+        
+        this.clNameStudent.setCellValueFactory(new PropertyValueFactory("name"));
+        this.clProcedureType.setCellValueFactory(new PropertyValueFactory("nameProcedure"));
+        this.clMatricula.setCellValueFactory(new PropertyValueFactory("matricula"));
+        
+        Secretarie secretarie = FXMLLoginController.newSecretarie;
+        String token = secretarie.getToken();
+        ServiceSecretarieProcedure ssp = new ServiceSecretarieProcedure();
+        try {
+            ArrayList<ProcedureInfo> proceduresInfo =  ssp.getProcedures(token);
+            proceduresInfo.forEach((procedureInfo)->persons.add(procedureInfo));
+            this.tbProcedures.setItems(persons);
+        } catch (JSONException ex) {
+            Logger.getLogger(FXMLSecretariesProceduresController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 
     @FXML
@@ -64,5 +103,16 @@ public class FXMLSecretariesProceduresController implements Initializable {
             System.err.println(ex.getMessage());
         }
     }
-    
+
+    @FXML
+    private void clicBtnEval(ActionEvent event) {
+        int selection= tbProcedures.getSelectionModel().getSelectedIndex();
+        
+        if (selection >=0){
+            personInfo = persons.get(selection);
+            changeWindow("FXMLSecretarieEval.fxml");
+        }else{
+            System.out.println("No seleccionaste nada");
+        }
+    }
 }
