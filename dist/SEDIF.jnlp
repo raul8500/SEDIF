@@ -8,12 +8,12 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SEDIF.jar" size="2409578" download="eager" />
+    <jar href="SEDIF.jar" size="2494800" download="eager" />
     <jar href="lib\java-json.jar" size="84697" download="eager" />
+    <jar href="lib\libthrift-0.13.0.jar" size="246059" download="eager" />
+    <jar href="lib\slf4j-api-1.7.30.jar" size="41472" download="eager" />
+    <jar href="lib\slf4j-nop-1.7.30.jar" size="4020" download="eager" />
   </resources>
-  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="SEDIF" >
-    <param name="requiredFXVersion" value="8.0+"/>
-  </applet-desc>
   <jfx:javafx-desc  width="800" height="600" main-class="sedif.SEDIF"  name="SEDIF" />
   <update check="always"/>
 </jnlp>

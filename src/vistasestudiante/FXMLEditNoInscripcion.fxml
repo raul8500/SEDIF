@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="vistasestudiante.FXMLEditNoInscripcionController">
+   <children>
+      <Button layoutX="197.0" layoutY="197.0" mnemonicParsing="false" onAction="#clicBtnLoadDoc" prefHeight="31.0" prefWidth="89.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="729.0" layoutY="354.0" mnemonicParsing="false" onAction="#clicBtnSendProcedure" prefHeight="31.0" prefWidth="109.0" text="Enviar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="lbLoadDoc" layoutX="197.0" layoutY="235.0" prefHeight="22.0" prefWidth="89.0" textFill="RED" />
+   </children>
+</AnchorPane>

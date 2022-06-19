@@ -7,41 +7,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="vistasestudiante.FXMLNoInscriptionController">
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistasestudiante.FXMLNoInscriptionController">
    <children>
-      <ImageView fitHeight="576.0" fitWidth="1024.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="576.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/INSCRIPCION.png" />
          </image>
       </ImageView>
       <Label fx:id="lbLoadDoc" layoutX="351.0" layoutY="412.0" prefHeight="22.0" prefWidth="89.0" textFill="RED" />
-      <Button fx:id="btnHelp" layoutX="29.0" layoutY="531.0" mnemonicParsing="false" onAction="#clicBtnHelp" opacity="0.0" prefHeight="31.0" prefWidth="28.0" text="Button">
+      <Button fx:id="btnHelp" layoutX="21.0" layoutY="519.0" mnemonicParsing="false" onAction="#clicBtnHelp" opacity="0.0" prefHeight="31.0" prefWidth="28.0" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="29.0" layoutY="295.0" mnemonicParsing="false" onAction="#clicBtnSendDocWith" opacity="0.0" prefHeight="63.0" prefWidth="168.0" text="Button">
+      <Button layoutX="18.0" layoutY="285.0" mnemonicParsing="false" onAction="#clicBtnSendDocWith" opacity="0.0" prefHeight="63.0" prefWidth="168.0" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="29.0" layoutY="168.0" mnemonicParsing="false" onAction="#clicBtnSendDocWithout" opacity="0.0" prefHeight="63.0" prefWidth="168.0" text="Button">
+      <Button layoutX="21.0" layoutY="159.0" mnemonicParsing="false" onAction="#clicBtnSendDocWithout" opacity="0.0" prefHeight="63.0" prefWidth="168.0" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="883.0" layoutY="531.0" mnemonicParsing="false" onAction="#clicBtnSendProcedure" opacity="0.0" prefHeight="31.0" prefWidth="109.0" text="Button">
+      <Button layoutX="873.0" layoutY="521.0" mnemonicParsing="false" onAction="#clicBtnSendProcedure" opacity="0.0" prefHeight="31.0" prefWidth="109.0" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="760.0" layoutY="528.0" mnemonicParsing="false" onAction="#clicBtnBack" opacity="0.0" prefHeight="31.0" prefWidth="99.0" text="Button">
+      <Button layoutX="753.0" layoutY="519.0" mnemonicParsing="false" onAction="#clicBtnBack" opacity="0.0" prefHeight="31.0" prefWidth="99.0" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="351.0" layoutY="374.0" mnemonicParsing="false" onAction="#clicBtnLoadDoc" opacity="0.0" prefHeight="31.0" prefWidth="89.0">
+      <Button layoutX="341.0" layoutY="364.0" mnemonicParsing="false" onAction="#clicBtnLoadDoc" opacity="0.0" prefHeight="31.0" prefWidth="89.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

@@ -8,10 +8,15 @@
 
 package vistasestudiante;
 
+import Servicio.ServiceProcedure;
+import Servicio.ServiceUpload;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +28,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import pojo.FilePath;
+import sedif.FXMLLoginController;
 
 public class FXMLNoInscriptionController implements Initializable {
 
@@ -39,7 +47,22 @@ public class FXMLNoInscriptionController implements Initializable {
 
     @FXML
     private void clicBtnLoadDoc(ActionEvent event) {
-        loadDocs(lbLoadDoc,route);
+        Stage stage = (Stage) btnHelp.getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Image Files", "*.docx", "*.doc", "*.pdf"),
+            new FileChooser.ExtensionFilter("All Files", "*.*")
+        );
+        
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        
+        if (selectedFile != null) {
+           String nameDoc = selectedFile.getName();
+           route = selectedFile.getAbsolutePath();
+           lbLoadDoc.setText(nameDoc);
+           System.out.println(nameDoc + "  ==  " + route);
+        }
     }
 
     @FXML
@@ -48,9 +71,29 @@ public class FXMLNoInscriptionController implements Initializable {
     }
 
     @FXML
-    private void clicBtnSendProcedure(ActionEvent event) {
-        //Validacion del envio
-        showAlert("Envio de Documento", "El envio fue...", Alert.AlertType.INFORMATION);
+     private void clicBtnSendProcedure(ActionEvent event) {
+         
+        if (route.equals("")){
+            showAlert("Envio de Documentos", "No has seleccionado todos los documentos", Alert.AlertType.INFORMATION);
+        }else{
+            String token = FXMLLoginController.newStudent.getToken();
+            ServiceProcedure sd = new ServiceProcedure();
+            ServiceUpload su = new ServiceUpload();
+            
+            
+            try {
+                ArrayList<FilePath> filePaths = sd.setStatusProcedureInscription(token);
+                for(int i=0;i<filePaths.toArray().length;i++){
+                   int type = filePaths.get(i).getType(); 
+                   String path = filePaths.get(i).getBdPath();
+                   su.uploadFile(route,path);
+                }
+            } catch (JSONException ex) {
+                Logger.getLogger(FXMLSendDocWithoutController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            showAlert("Envio de Documentos", "El envio fue correcto la aplicacion se reiniciara para ver los cambios", Alert.AlertType.INFORMATION);
+            changeWindow("FXMLMainStatus.fxml");
+        }
     }
 
     @FXML
@@ -78,25 +121,6 @@ public class FXMLNoInscriptionController implements Initializable {
             stage.show();
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
-        }
-    }
-    
-    private void loadDocs(Label label, String route){
-        Stage stage = (Stage) btnHelp.getScene().getWindow();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        fileChooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("Image Files", "*.docx", "*.doc", "*.pdf"),
-            new FileChooser.ExtensionFilter("All Files", "*.*")
-        );
-        
-        File selectedFile = fileChooser.showOpenDialog(stage);
-        
-        if (selectedFile != null) {
-           String nameDoc = selectedFile.getName();
-           route = selectedFile.getAbsolutePath();
-           label.setText(nameDoc);
-           System.out.println(nameDoc + "  ==  " + route);
         }
     }
     

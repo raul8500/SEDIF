@@ -16,9 +16,12 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.logging.Level;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import pojo.FilePath;
 import pojo.User;
 import pojo.Procedure;
 
@@ -42,7 +45,7 @@ public class ServiceProcedure {
             
             if (successRequest){
                 int status = obtainedProcedure.getInt("estadoEval");
-                if (status != 0){
+                if (status != 1){
                     String peroid = obtainedProcedure.getString("periodo");
                     String name = obtainedProcedure.getString("nombre");
                     int month = obtainedProcedure.getInt("mes");
@@ -64,4 +67,136 @@ public class ServiceProcedure {
             return newProcedure;
         }
     }
+    
+    public ArrayList<FilePath> setStatusProcedureNormal(String token) throws JSONException{
+        try{
+            URL url = new URL("http://127.0.0.1:7070/api/tramite");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("x-token", token);
+            Reader imput = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+            StringBuilder stringBuilder = new StringBuilder();
+            
+            for(int c; (c = imput.read()) >= 0;){
+                stringBuilder.append((char)c);
+            }
+            
+            String response = stringBuilder.toString(); 
+            System.out.println(response);
+            
+            JSONObject obtainedFiles = new JSONObject(response);
+            boolean successRequest = obtainedFiles.getBoolean("ok");
+            
+            if (successRequest){
+                JSONArray files = obtainedFiles.getJSONArray("files");
+                //System.out.println(files.toString());
+                ArrayList<FilePath> filePaths = new ArrayList<FilePath>();
+                for (int i=0;i<files.length();i++){
+                    int type = files.getJSONObject(i).getInt("tipo");
+                    String dbPath = files.getJSONObject(i).getString("dbPath");
+                    filePaths.add(new FilePath(dbPath,type));
+                }
+                return filePaths;
+            }else{
+                ArrayList<FilePath> filePaths = new ArrayList<FilePath>();
+                return filePaths;
+            }
+            
+        } catch (IOException ex) {
+            System.out.println(ex);
+            ArrayList<FilePath> filePaths = new ArrayList<FilePath>();
+            return filePaths;
+        }
+    }
+    
+    public ArrayList<FilePath> setStatusProcedureInscription(String token) throws JSONException{
+        try{
+            URL url = new URL("http://127.0.0.1:7070/api/tramite/solicitudInscripcion");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("x-token", token);
+            Reader imput = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+            StringBuilder stringBuilder = new StringBuilder();
+            
+            for(int c; (c = imput.read()) >= 0;){
+                stringBuilder.append((char)c);
+            }
+            
+            String response = stringBuilder.toString(); 
+            System.out.println(response);
+            
+            JSONObject obtainedFiles = new JSONObject(response);
+            boolean successRequest = obtainedFiles.getBoolean("ok");
+            
+            if (successRequest){
+                JSONArray files = obtainedFiles.getJSONArray("files");
+                //System.out.println(files.toString());
+                ArrayList<FilePath> filePaths = new ArrayList<FilePath>();
+                for (int i=0;i<files.length();i++){
+                    int type = files.getJSONObject(i).getInt("tipo");
+                    String dbPath = files.getJSONObject(i).getString("dbPath");
+                    filePaths.add(new FilePath(dbPath,type));
+                }
+                return filePaths;
+            }else{
+                ArrayList<FilePath> filePaths = new ArrayList<FilePath>();
+                return filePaths;
+            }
+            
+        } catch (IOException ex) {
+            System.out.println(ex);
+            ArrayList<FilePath> filePaths = new ArrayList<FilePath>();
+            return filePaths;
+        }
+    }
+        
+        public ArrayList<FilePath> setStatusProcedureWithChanges(String token,boolean alta, boolean baja,boolean movilidad) throws JSONException{
+        try{
+            URL url = new URL("http://127.0.0.1:7070/api/tramite/solicitudCambios");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            String data = "{\n" +
+                            "    \"formatoAlta\":"+ alta +",\n" +
+                            "    \"formatoBaja\":"+ baja + ",\n" +
+                            "    \"formatoMovilidad\":"+ movilidad +"\n" +
+                            "}" ;
+            System.out.println(data);
+            connection.setRequestProperty("x-token", token);
+            connection.setRequestProperty("Content-Type", "application/json");
+            
+            Reader imput = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+            StringBuilder stringBuilder = new StringBuilder();
+            
+            for(int c; (c = imput.read()) >= 0;){
+                stringBuilder.append((char)c);
+            }
+            
+            String response = stringBuilder.toString(); 
+            System.out.println(response);
+            
+            JSONObject obtainedFiles = new JSONObject(response);
+            boolean successRequest = obtainedFiles.getBoolean("ok");
+            
+            if (successRequest){
+                JSONArray files = obtainedFiles.getJSONArray("files");
+                //System.out.println(files.toString());
+                ArrayList<FilePath> filePaths = new ArrayList<FilePath>();
+                for (int i=0;i<files.length();i++){
+                    int type = files.getJSONObject(i).getInt("tipo");
+                    String dbPath = files.getJSONObject(i).getString("dbPath");
+                    filePaths.add(new FilePath(dbPath,type));
+                }
+                return filePaths;
+            }else{
+                ArrayList<FilePath> filePaths = new ArrayList<FilePath>();
+                return filePaths;
+            }
+            
+        } catch (IOException ex) {
+            System.out.println(ex);
+            ArrayList<FilePath> filePaths = new ArrayList<FilePath>();
+            return filePaths;
+        }
+    }
+    
 }

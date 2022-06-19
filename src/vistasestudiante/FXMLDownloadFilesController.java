@@ -1,8 +1,10 @@
 package vistasestudiante;
 
+import Servicio.ServiceDownload;
 import Servicio.ServiceFormat;
 import Servicio.ServiceProcedure;
 import Servicio.ServiceSecretarieProcedure;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,11 +19,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.swing.JFileChooser;
 import org.json.JSONException;
 import pojo.Format;
 import pojo.ProcedureInfo;
@@ -38,7 +43,7 @@ public class FXMLDownloadFilesController implements Initializable {
     private TableView<Format> tbFormats;
     @FXML
     private TableColumn<?, ?> tbNameFormat;
-    
+    private String route;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -58,7 +63,6 @@ public class FXMLDownloadFilesController implements Initializable {
         } catch (JSONException ex) {
             Logger.getLogger(FXMLDownloadFilesController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
     @FXML
@@ -66,7 +70,13 @@ public class FXMLDownloadFilesController implements Initializable {
         int selection = tbFormats.getSelectionModel().getSelectedIndex();
         
         if (selection >=0){
-            System.out.println(formats.get(selection).toString());
+            String ruta = formats.get(selection).getRoute();
+            ServiceDownload sd = new ServiceDownload();
+            String rutaClient= "C:\\Users\\peres\\OneDrive\\Escritorio\\caca.pdf";
+            loadDocs();
+            String nameFile = formats.get(selection).getNameFormat();
+            
+            sd.download(ruta, route+"\\"+nameFile+".pdf");  
         }else{
             System.out.println("No seleccionaste nada");
         }
@@ -108,5 +118,23 @@ public class FXMLDownloadFilesController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    
+    private void loadDocs(){
+        
+        JFileChooser fileChooser = new JFileChooser();
+        
+        fileChooser.setFileSelectionMode(
+        JFileChooser.DIRECTORIES_ONLY);
+        int option = fileChooser.showDialog(null,
+        "Select Directory");
+        if (option == JFileChooser.APPROVE_OPTION) {
+            File f = fileChooser.getSelectedFile();
+            // if the user accidently click a file, then select the parent directory.
+            if (!f.isDirectory()) {
+                f = f.getParentFile();
+            }
+            route = f.getAbsolutePath();
+        }
     }
 }

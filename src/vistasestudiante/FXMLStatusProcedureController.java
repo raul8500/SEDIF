@@ -40,10 +40,12 @@ public class FXMLStatusProcedureController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Procedure prc = FXMLLoginController.procedure;
+        
         //status = 0 no iniciado
         //1 = en espera de evaluacion;
         //2 requiere cambios
         //3 valido a mimir;
+        
         int status = prc.getStatus();
         
         switch (status) {

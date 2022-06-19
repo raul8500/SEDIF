@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="vistasestudiante.FXMLEditNormalProcedureController">
+   <children>
+      <Button layoutX="765.0" layoutY="462.0" mnemonicParsing="false" onAction="#clicBtnSendProcedure" prefHeight="27.0" prefWidth="106.0" text="Send">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="203.0" layoutY="305.0" mnemonicParsing="false" onAction="#clicBtnLoadBaucher" prefHeight="27.0" prefWidth="93.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="449.0" layoutY="304.0" mnemonicParsing="false" onAction="#clicBtnLoadSchedule" prefHeight="27.0" prefWidth="93.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="697.0" layoutY="305.0" mnemonicParsing="false" onAction="#clicBtnLoadDocEval" prefHeight="27.0" prefWidth="93.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="lbHorario" layoutX="449.0" layoutY="347.0" prefHeight="17.0" prefWidth="93.0" />
+      <Label fx:id="lbBaucher" layoutX="200.0" layoutY="348.0" prefHeight="17.0" prefWidth="93.0" />
+      <Label fx:id="lbDocEval" layoutX="696.0" layoutY="345.0" prefHeight="17.0" prefWidth="93.0" />
+   </children>
+</AnchorPane>
