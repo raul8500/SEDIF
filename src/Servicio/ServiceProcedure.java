@@ -163,6 +163,11 @@ public class ServiceProcedure {
             System.out.println(data);
             connection.setRequestProperty("x-token", token);
             connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+            OutputStream output = connection.getOutputStream();
+            output.write(data.getBytes());
+            output.flush();
+            output.close();
             
             Reader imput = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
             StringBuilder stringBuilder = new StringBuilder();
@@ -170,8 +175,9 @@ public class ServiceProcedure {
             for(int c; (c = imput.read()) >= 0;){
                 stringBuilder.append((char)c);
             }
-            
             String response = stringBuilder.toString(); 
+            
+            
             System.out.println(response);
             
             JSONObject obtainedFiles = new JSONObject(response);

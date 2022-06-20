@@ -34,7 +34,6 @@ import pojo.Secretarie;
 import pojo.Student;
 import sedif.FXMLLoginController;
 import static sedif.FXMLLoginController.procedure;
-import static vistassecretarias.FXMLSecretariesProceduresController.personInfo;
 
 
 public class FXMLDownloadFilesController implements Initializable {
@@ -72,7 +71,6 @@ public class FXMLDownloadFilesController implements Initializable {
         if (selection >=0){
             String ruta = formats.get(selection).getRoute();
             ServiceDownload sd = new ServiceDownload();
-            String rutaClient= "C:\\Users\\peres\\OneDrive\\Escritorio\\caca.pdf";
             loadDocs();
             String nameFile = formats.get(selection).getNameFormat();
             

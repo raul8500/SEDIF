@@ -124,10 +124,13 @@ public class FXMLLoginController implements Initializable {
                     break;
                 case 2:
                     changeWindow("/vistasestudiante/FXMLMainStatus.fxml");
+                    break;
                 case 3:
                     changeWindow("/vistasestudiante/FXMLMainStatus.fxml");
+                    break;
                 case 4:
                     changeWindow("/vistasestudiante/FXMLMainStatus.fxml");
+                    break;
                 case 5: 
                     changeWindow("/vistasestudiante/FXMLMainStatus.fxml");
                     break;

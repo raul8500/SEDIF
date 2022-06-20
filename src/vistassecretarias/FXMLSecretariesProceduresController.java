@@ -50,14 +50,13 @@ public class FXMLSecretariesProceduresController implements Initializable {
     private TableColumn<?, ?> clProcedureType;
     @FXML
     private TableColumn<?, ?> clMatricula;
-    @FXML
-    private ComboBox<?> cbFilter;
     
-    private ObservableList<ProcedureInfo> persons;
     @FXML
     private TableView<ProcedureInfo> tbProcedures;
     
-    public static ProcedureInfo personInfo;
+    public static ProcedureInfo procedureInfo;
+    
+    private ObservableList<ProcedureInfo> persons;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -109,7 +108,7 @@ public class FXMLSecretariesProceduresController implements Initializable {
         int selection= tbProcedures.getSelectionModel().getSelectedIndex();
         
         if (selection >=0){
-            personInfo = persons.get(selection);
+            procedureInfo = persons.get(selection);
             changeWindow("FXMLSecretarieEval.fxml");
         }else{
             System.out.println("No seleccionaste nada");

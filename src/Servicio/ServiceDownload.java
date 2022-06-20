@@ -27,10 +27,15 @@ public class ServiceDownload {
             FileInfoExtractService.Client client = new FileInfoExtractService.Client(binaryProtocol);
             FileData fileData = client.downloadFile(rutaServer);
             try{
+                System.out.println("2");
                 java.io.File file = new java.io.File(rutaClient);
+                System.out.println("3");
                 FileOutputStream fos = new FileOutputStream(file);
+                System.out.println("4");
                 FileChannel channel = fos.getChannel();
+                System.out.println("5");
                 channel.write(fileData.buff);
+                System.out.println("6");
                 channel.close();
             }catch (FileNotFoundException ex){
                 System.out.println(ex);
@@ -42,6 +47,5 @@ public class ServiceDownload {
         } catch (TException ex) {
             Logger.getLogger(ServiceDownload.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 }
